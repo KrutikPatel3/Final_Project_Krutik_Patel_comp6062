@@ -16,17 +16,15 @@
             <div class="display-box col-md-3 col-sm-6">
                 <div class="random-fact-class">
                     <p class="display-box-title">📑Today's Fun Fact</p>
-                    <form action="updateQuote">
-                        <p class="display-box-content">{{Fact.text}}</p>
-                        <button type = "submit" class="btn btn-primary col-md-4 col-sm-4">New Fact</button>                        
-                    </form>
+                    <p class="display-box-content" v-model = Fact.text>{{Fact.text}}</p>
+                    <button @click = "updateQuote" class="btn btn-primary col-md-4 col-sm-4">New Fact</button>
                 </div>
             </div>
             <div class="display-box col-md-3 col-sm-6">
                 <div class="weather-class">
                     <p class="display-box-title">⛅Weather Forecast</p>
                     <input type="text" name="location" id="location" class="col-md-7 col-sm-7">
-                    <button type="submit" class="btn btn-primary col-md-5 col-sm-5">Get Weather</button>
+                    <button @click = "getWeather" class="btn btn-primary col-md-5 col-sm-5">Get Weather</button>
 
                     <div class="display-box-content">
                         <p><strong>Temperature: </strong>{{Weather.temperature}}</p>
@@ -40,7 +38,7 @@
                     <p class="display-box-title">📔Dictionary</p>
                     <div class="row">
                         <input type="text" name="word" id="word" class="col-md-8 col-sm-8">
-                        <button type="submit" class="btn btn-primary col-md-4 col-sm-4">Define</button>
+                        <button @click = "getDefinition" class="btn btn-primary col-md-4 col-sm-4">Define</button>
                     </div>
                     <div class="display-box-content">
                         <p><strong>Word: </strong>{{Dictionary.word}}</p>

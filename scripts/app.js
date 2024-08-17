@@ -3,7 +3,6 @@ const app = Vue.createApp({
         return{
             Fact : {
                 text : 'A Random Fact',
-                url : 'https://uselessfacts.jsph.pl/api/v2/facts/random',
             },
 
             Weather : {
@@ -31,13 +30,32 @@ const app = Vue.createApp({
     methods(){
         return{
             updateQuote(){
-                fetch(Fact.url, {
-                    method: 'GET',
+                fetch('https://uselessfacts.jsph.pl/api/v2/facts/random')
+                .then(response => response.json())
+                .then(data => {
+                    this.Fact.text = data.text;
                 })
-                .then(response => response.json)
-                .then(data => JSON.parse(Fact.text))
-                console.log(Fact.text);
+            
             },
+            getWeather(){
+                fetch('https://weather-data.liamstewart.ca/?city=Toronto')
+                .then(response => response.json()
+                .then(data => {
+                    this.Weather.temperature = data.temperature;
+                    this.Weather.wind = data.wind_speed;
+                    this.Weather.description = data.description;
+                }))
+            },
+            getDefinition(){
+                fetch('https://api.dictionaryapi.dev/api/v2/entries/en/Bottle')
+                .then(response => response.json())
+                .then(data => {
+                    this.Dictionary.word = data.word;
+                    this.Dictionary.phonetic = data.phonetic;
+                    this.Dictionary.partOfSpeech = data.meanings.partOfSpeech;
+                    this.Dictionary.definition = data.meanings.definition;
+                })
+            }
         };
     },
 });
